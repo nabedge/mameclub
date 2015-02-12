@@ -1,0 +1,111 @@
+@charset 'utf-8';
+
+.screen {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	background: #FFFFFF;
+}
+.splash {
+	z-index: 3;
+}
+.splash > img {
+	position: absolute;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 200px;
+	margin: auto;
+}
+.name {
+	z-index: 2;
+}
+.name > input[type=text] {
+	position: absolute;
+	top: -75px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 80%;
+	height: 50px;
+	margin: auto;
+}
+.name > input[type=submit] {
+	position: absolute;
+	top: 75px;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	width: 60%;
+	height: 50px;
+	margin: auto;
+}
+.main {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+}
+.count {
+	margin: 20px;
+	font-size: 20px;
+	font-weight: bold;
+}
+.face {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 50px;
+	width: 300px;
+	height: 450px;
+	margin: auto 0;
+	background: rgba(255, 0, 0, 0.3);
+}
+.image {
+	position: fixed;
+	top: 0;
+	right: 50px;
+	bottom: 0;
+	width: 300px;
+	height: 450px;
+	margin: auto 0;
+	background: rgba(0, 0, 255, 0.3);
+}
+.mode {
+	position: fixed;
+	right: 0;
+	bottom: 50px;
+	left: 0;
+	display: block;
+	width: 100px;
+	height: 44px;
+	margin: auto;
+	background: #ccc;
+}
+.mode.mame {
+	margin-left: 50px;
+}
+.mode.kiss {
+	margin-left: 200px;
+}
+.mode > input {
+	display: none;
+}
+
+img.mame {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+}
+img.kiss {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 50px;
+}

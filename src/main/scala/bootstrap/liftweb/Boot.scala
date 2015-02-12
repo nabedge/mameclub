@@ -100,6 +100,7 @@ class Boot extends Loggable {
     val nominees = Menu.i("Nominees") / "nominees"
     val results = Menu.i("Results") / "results"
     val voters = Menu.i("Voters") / "voters"
+    val voters2 = Menu.i("Voters2") / "voters2"
     val userMenu = User.AddUserMenusHere
     val static = Menu(Loc("Static", Link(List("static"), true, "/static/index"), S.loc("StaticContent", scala.xml.Text("Static Content")), LocGroup("lg2", "topRight")))
     val twbs = Menu(Loc("twbs",
@@ -119,7 +120,8 @@ class Boot extends Loggable {
       nominee >> LocGroup("lg1"),
       nominees >> LocGroup("lg1"),
       results >> LocGroup("lg1"),
-      voters >> LocGroup("lg1")
+      voters >> LocGroup("lg1"),
+      voters2 >> LocGroup("lg1")
     )
   }
 

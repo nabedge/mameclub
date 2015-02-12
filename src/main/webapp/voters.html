@@ -40,7 +40,7 @@
             angular.module('myVote', []).controller('myVote.Ctrl', ['$scope', '$http' ,function($scope, $http) {
 
                 function postVote() {
-                    $http.post('/vote', $scope.vote).
+                    $http.post('mameclub/vote', $scope.vote).
   success(function(data, status, headers, config) {
     // this callback will be called asynchronously
     // when the response is available

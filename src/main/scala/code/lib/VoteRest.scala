@@ -15,10 +15,10 @@ object VoteRest extends RestHelper {
   override implicit val formats = DefaultFormats.lossless
 
   serve {
-    case "vote" :: Nil JsonGet _ =>
+    case "mameclub" :: "vote" :: Nil JsonGet _ =>
       JsonResponse(getVotes)
 
-    case "vote" :: Nil JsonPost cijson -> _ =>
+    case "mameclub" :: "vote" :: Nil JsonPost cijson -> _ =>
       postVote(cijson)
       JsonResponse(cijson)
   }
