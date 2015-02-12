@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta content="text/html; charset=UTF-8" http-equiv="content-type"/>
+    <title>Home</title>
+</head>
+<body data-lift-content-id="main">
+<div id="main" data-lift="surround?with=default;at=content" data-ng-app="myVote">
+
+    <div data-ng-controller="myVote.Ctrl">
+        <h2>Voters</h2>
+
+        <div>
+            <div>
+                <span>Male<input type="radio" name="mf" value="m" ng-model="vote.mf"/></span>
+                <span>Female<input type="radio" name="mf" value="f" ng-model="vote.mf"/></span>
+            </div>
+            <div>
+                <select name="nominee" ng-model="vote.nominee">
+                    <option value="1">First</option>
+                    <option value="2">Second</option>
+                    <option value="3">Third</option>
+                    <option value="4">Fourth</option>
+                </select>
+            </div>
+            <div>
+                <span>X<input type="text" name="x" ng-model="vote.x"/></span>
+                <span>Y<input type="text" name="y" ng-model="vote.y"/></span>
+            </div>
+            <div>
+                <span><input type="submit" class="bean" ng-click="voteBean()"/></span>
+                <span><input type="submit" class="kiss" ng-click="voteKiss()"/></span>
+            </div>
+        </div>
+    </div>
+
+    <tail>
+        <script id="angularjs" src="/classpath/fobo/angular.js"></script>
+        <script>
+            angular.module('myVote', []).controller('myVote.Ctrl', ['$scope', '$http' ,function($scope, $http) {
+
+                function postVote() {
+                    $http.post('/vote', $scope.vote).
+  success(function(data, status, headers, config) {
+    // this callback will be called asynchronously
+    // when the response is available
+  }).
+  error(function(data, status, headers, config) {
+    // called asynchronously if an error occurs
+    // or server returns response with an error status.
+  });
+                }
+
+                $scope.vote = {
+                    mf: "m",
+                    nominee: "2",
+                    x: 0,
+                    y: 0,
+                    bk: null
+                }
+
+                $scope.voteBean = function(){
+                    $scope.vote.bk = "b";
+                    console.log($scope.vote);
+                    postVote();
+                }
+
+                $scope.voteKiss = function(){
+                    $scope.vote.bk = "k";
+                    console.log($scope.vote);
+                    postVote();
+                }
+
+            }]);
+        </script>
+    </tail>
+</div>
+</body>
+</html>
