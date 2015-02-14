@@ -105,13 +105,21 @@ FaceToucher.prototype = {
 	},
 	sendToSrv: function (name, x, y, vtype) {
 	    console.log("x: "+x+", y:"+y);
-        $.post('/mameclub/vote', {nominee: "2",  mf: "m", x: x, y: y, bk: "b"});
+	    var vote = {nominee: "2",  mf: "m", x: x, y: y, bk: "b"}
+	    $.ajax({
+          type: "POST",
+          url: 'vote',
+          data: JSON.stringify(vote),
+          contentType: "application/json;charset=UTF-8",
+          dataType: 'json'
+        });
+        //$.post('vote', vote, null, 'json');
 	}
 };
 
 var Mame = function (x, y) {
 	this.$body = $(document.body);
-	this.$image = $('<img src="/mameclub/assets/images/mame.png" />').addClass('mame');
+	this.$image = $('<img src="assets/images/mame.png" />').addClass('mame');
 	this.x = x;
 	this.y = y;
 	this.defaultX = x;
@@ -148,7 +156,7 @@ Mame.prototype = {
 
 var Kiss = function (x, y) {
 	this.$body = $(document.body);
-	this.$image = $('<img src="/mameclub/assets/images/kiss.png" />').addClass('kiss');
+	this.$image = $('<img src="assets/images/kiss.png" />').addClass('kiss');
 	this.x = x;
 	this.y = y;
 	this.defaultX = x;

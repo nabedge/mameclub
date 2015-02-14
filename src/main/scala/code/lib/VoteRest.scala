@@ -16,10 +16,10 @@ object VoteRest extends RestHelper {
   override implicit val formats = DefaultFormats.lossless + BigDecimalSerializer
 
   serve {
-    case "mameclub" :: "vote" :: Nil JsonGet _ =>
+    case "vote" :: Nil JsonGet _ =>
       JsonResponse(getVotes)
 
-    case "mameclub" :: "vote" :: Nil JsonPost cijson -> _ =>
+    case "vote" :: Nil JsonPost cijson -> _ =>
       postVote(cijson)
       JsonResponse(cijson)
   }
