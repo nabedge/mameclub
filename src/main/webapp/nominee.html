@@ -5,14 +5,63 @@
     <title>Home</title>
 </head>
 <body data-lift-content-id="main">
-<div id="main" data-lift="surround?with=default;at=content">
+<div id="main" data-lift="surround?with=default;at=content" data-ng-app="myNominee">
+    <div data-ng-controller="myNominee.Ctrl">
 
-    <h2>Welcome to your project!</h2>
-    <p>
-	<span data-lift="helloWorld.howdy">
-	  Welcome to your Lift app at <span id="time">Time goes here</span>
-	</span>
-    </p>
+    <h2>Nominee</h2>
+        <h3>Vote:</h3>
+        <dl>
+            <dt>Male/Female</dt><dd>{{vote.mf}}</dd>
+            <dt>(x,y)</dt><dd>({{vote.x}},{{vote.y}})</dd>
+            <dt>Bean/Kiss</dt><dd>{{vote.bk}}</dd>
+        </dl>
+        <hr>
+        <h3>Stats:</h3>
+        <dl>
+            <dt>Beans (Men)</dt><dd>{{stats.mb}}</dd>
+            <dt>Kiss (Men)</dt><dd>{{stats.mk}}</dd>
+            <dt>Beans (Female)</dt><dd>{{stats.fb}}</dd>
+            <dt>Kiss (Female)</dt><dd>{{stats.fk}}</dd>
+        </dl>
+
+    </div>
+    <tail>
+        <div data-lift="nominee"></div>
+        <script id="angularjs" src="/classpath/fobo/angular.js"></script>
+        <script>
+            angular.module('myNominee', [])
+            .controller('myNominee.Ctrl', ['$scope', '$document', function($scope, $document) {
+                $scope.vote = {
+                    nominee: null,
+                    mf: null,
+                    x: null,
+                    y: null,
+                    bk: null
+                }
+                $scope.stats = {
+                    nominee: null,
+                    mb: null,
+                    mk: null,
+                    fb: null,
+                    fk: null
+                }
+                $document
+                    .on('new-ng-vote', function(event, data) {
+                        console.log(data);
+                        $scope.vote.mf = data.mf;
+                        $scope.vote.x = data.x;
+                        $scope.vote.y = data.y;
+                        $scope.vote.bk = data.bk;
+                        $scope.stats.mb = data.mb;
+                        $scope.stats.mk = data.mk;
+                        $scope.stats.fb = data.fb;
+                        $scope.stats.fk = data.fk;
+
+                        $scope.$digest();
+                    });
+            }]);
+        </script>
+    </tail>
 
 </div>
 </body>

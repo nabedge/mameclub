@@ -39,7 +39,7 @@ class NomineeState extends LiftActor with ListenerManager {
 
 }
 
-case class Vote(nominee: String, mf: String, x: Int, y: Int, bk: String)
+case class Vote(nominee: String, mf: String, x: BigDecimal, y: BigDecimal, bk: String)
 
 case class Score(mb: Int, mk: Int, fb: Int, fk: Int) {
   def add(v: Vote): Score = v match {
@@ -50,7 +50,7 @@ case class Score(mb: Int, mk: Int, fb: Int, fk: Int) {
   }
 }
 
-case class VoteWithScore(nominee: String, mf: String, x: Int, y: Int, bk: String, mb: Int, mk: Int, fb: Int, fk: Int)
+case class VoteWithScore(nominee: String, mf: String, x: BigDecimal, y: BigDecimal, bk: String, mb: Int, mk: Int, fb: Int, fk: Int)
 
 object VoteWithScore {
   def apply(v: Vote, s: Score):VoteWithScore = VoteWithScore(v.nominee, v.mf, v.x, v.y, v.bk, s.mb, s.mk, s.fb, s.mk)

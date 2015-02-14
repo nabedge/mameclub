@@ -1,6 +1,7 @@
 package code.lib
 
 import code.comet.NomineeComet
+import code.lib.CustomSerializers.BigDecimalSerializer
 import net.liftweb.http.JsonResponse
 import net.liftweb.http.rest.RestHelper
 import net.liftweb.json.JsonAST.JNull
@@ -12,7 +13,7 @@ import net.liftweb.json.Extraction._
  * Created by andreas on 2/11/15.
  */
 object VoteRest extends RestHelper {
-  override implicit val formats = DefaultFormats.lossless
+  override implicit val formats = DefaultFormats.lossless + BigDecimalSerializer
 
   serve {
     case "mameclub" :: "vote" :: Nil JsonGet _ =>

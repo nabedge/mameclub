@@ -1,5 +1,6 @@
 package code.comet
 
+import code.lib.CustomSerializers.BigDecimalSerializer
 import code.lib.{VoteWithScore, State, Score, Vote}
 import net.liftweb.actor.LiftActor
 import net.liftweb.common.Loggable
@@ -34,7 +35,7 @@ class NomineeComet extends CometActor with CometListener with Loggable {
   }
 
   private[this] def sendVoteWithScore(vs: VoteWithScore) = {
-      implicit val formats = DefaultFormats.lossless
+      implicit val formats = DefaultFormats.lossless + BigDecimalSerializer
       val json: JValue = decompose(vs)
       val js = JE.JsRaw(""" $(document).trigger('new-ng-vote', %s)""".format( compact( net.liftweb.json.render( json ) ) ) )
       println("VoteWithScore: " + vs + ",  json: " + json + ",  js: "  + js)

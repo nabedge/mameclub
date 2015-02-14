@@ -77,7 +77,7 @@ FaceToucher.prototype = {
 	},
 	sendToTouchStatus: function (touchX, touchY) {
 		var mode = this.$mode.filter(':checked').val();
-
+        this.sendToSrv(this.name, touchX, touchY, mode);
 		if (mode === 'mame') {
 			new Mame(touchX, touchY);
 			this.countUp();
@@ -102,6 +102,10 @@ FaceToucher.prototype = {
 		}
 
 		$elementCount.text(count);
+	},
+	sendToSrv: function (name, x, y, vtype) {
+	    console.log("x: "+x+", y:"+y);
+        $.post('mameclub/vote', {nominee: "2",  mf: "m", x: x, y: y, bk: "b"});
 	}
 };
 

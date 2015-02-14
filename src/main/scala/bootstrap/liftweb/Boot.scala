@@ -96,7 +96,13 @@ class Boot extends Loggable {
     val divider1 = Menu("divider1") / "divider1"
     val ddLabel1 = Menu.i("UserDDLabel") / "ddlabel1"
     val home = Menu.i("Home") / "index"
-    val nominee = Menu.i("Nominee") / "nominee"
+
+
+    //val nominee = Menu.i("Nominee") / "nominee"
+    val nominee = Menu.param[ParamInfo]("Nominee", "Nominee",
+      s => Full(ParamInfo(s)),
+      pi => pi.theParam) / "nominee"
+
     val nominees = Menu.i("Nominees") / "nominees"
     val results = Menu.i("Results") / "results"
     val voters = Menu.i("Voters") / "voters"
@@ -124,5 +130,7 @@ class Boot extends Loggable {
       voters2 >> LocGroup("lg1")
     )
   }
-
 }
+
+case class ParamInfo(theParam: String)
+
