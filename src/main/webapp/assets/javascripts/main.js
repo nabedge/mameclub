@@ -77,12 +77,14 @@ FaceToucher.prototype = {
 	},
 	sendToTouchStatus: function (touchX, touchY) {
 		var mode = this.$mode.filter(':checked').val();
-        this.sendToSrv(this.name, touchX, touchY, mode);
+
 		if (mode === 'mame') {
 			new Mame(touchX, touchY);
+			this.sendToSrv(this.name, touchX, touchY, "b");
 			this.countUp();
 		} else {
 			new Kiss(touchX, touchY);
+			this.sendToSrv(this.name, touchX, touchY, "k");
 			this.countUp(true);
 		}
 	},
@@ -103,9 +105,10 @@ FaceToucher.prototype = {
 
 		$elementCount.text(count);
 	},
-	sendToSrv: function (name, x, y, vtype) {
+	sendToSrv: function (name, x, y, bk) {
 	    console.log("x: "+x+", y:"+y);
-	    var vote = {nominee: "2",  mf: "m", x: x, y: y, bk: "b"}
+	    //TODO Temporarily vote sent to nominee="2" from male/famale="m" FIX THIS TOGETHER WITH FRONT-END
+	    var vote = {nominee: "2",  mf: "m", x: x, y: y, bk: bk}
 	    $.ajax({
           type: "POST",
           url: 'vote',
@@ -113,7 +116,6 @@ FaceToucher.prototype = {
           contentType: "application/json;charset=UTF-8",
           dataType: 'json'
         });
-        //$.post('vote', vote, null, 'json');
 	}
 };
 
