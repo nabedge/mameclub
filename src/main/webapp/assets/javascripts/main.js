@@ -105,7 +105,7 @@ FaceToucher.prototype = {
 	},
 	sendToSrv: function (name, x, y, vtype) {
 	    console.log("x: "+x+", y:"+y);
-        $.post('mameclub/vote', {nominee: "2",  mf: "m", x: x, y: y, bk: "b"});
+        $.post('/mameclub/vote', {nominee: "2",  mf: "m", x: x, y: y, bk: "b"});
 	}
 };
 
