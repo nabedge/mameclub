@@ -23,7 +23,7 @@ import scala.language.postfixOps
 class Boot extends Loggable {
   def boot {
 
-    if (Props.productionMode) LiftRules.calculateContextPath = () => Full("mameclub")
+    if (Props.productionMode) LiftRules.calculateContextPath = () => Full("/mameclub")
 
     if (!DB.jndiJdbcConnAvailable_?) {
       val vendor =
