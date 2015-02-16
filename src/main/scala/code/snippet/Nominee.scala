@@ -12,3 +12,5 @@ class Nominee(pi: ParamInfo) {
 
   def render = <lift:comet type="NomineeComet" name={pi.theParam}/>
 }
+
+case class ParamInfo(theParam: String)
