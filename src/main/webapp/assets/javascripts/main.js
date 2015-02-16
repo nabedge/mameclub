@@ -204,7 +204,9 @@ Kiss.prototype = {
 };
 
 var Nominee = function () {
+  this.srcFace = 'sample.minami';
   this.$face = $('#jsi-nominee-face');
+  this.$image = this.$face.find('.nominee-face');
   this.$scope = null;
 
   this.init();
@@ -247,8 +249,15 @@ Nominee.prototype = {
 
         if ($scope.vote.bk === 'b') {
           new Mame(data.x, data.y);
+
+          if ((data.mb + data.fb) % 50 === 0) {
+            _this.changeFace2Mame();
+          }
         } else {
           new Kiss(data.x, data.y);
+          if ((data.mk + data.fk) % 50 === 0) {
+            _this.changeFace2Kiss();
+          }
         }
 
         $scope.$digest();
@@ -256,8 +265,18 @@ Nominee.prototype = {
     }]);
   },
   changeFace2Mame: function () {
+    this.$image.attr('src', '/assets/images/' + this.srcFace + '.mame.jpg');
+
+    setTimeout($.proxy(function () {
+      this.$image.attr('src', '/assets/images/' + this.srcFace + '.jpg');
+    }, this), 1000);
   },
   changeFace2Kiss: function () {
+    this.$image.attr('src', '/assets/images/' + this.srcFace + '.kiss.jpg');
+
+    setTimeout($.proxy(function () {
+      this.$image.attr('src', '/assets/images/' + this.srcFace + '.jpg');
+    }, this), 1000);
   }
 };
 
