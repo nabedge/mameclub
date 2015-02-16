@@ -259,7 +259,6 @@ Nominee.prototype = {
             _this.changeFace2Kiss();
           }
         }
-
         $scope.$digest();
       });
     }]);
