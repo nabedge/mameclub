@@ -1,6 +1,7 @@
 package bootstrap.liftweb
 
 import code.lib.VoteRest
+import code.snippet.ParamInfo
 import net.liftweb._
 import util._
 import Helpers._
@@ -42,7 +43,7 @@ class Boot extends Loggable {
     // Use Lift's Mapper ORM to populate the database
     // you don't need to use Mapper to use Lift... use
     // any ORM you want
-    Schemifier.schemify(true, Schemifier.infoF _, User)
+    Schemifier.schemify(true, Schemifier.infoF _, User, Stats)
 
     // where to search snippet
     LiftRules.addToPackages("code")
@@ -133,6 +134,4 @@ class Boot extends Loggable {
     )
   }
 }
-
-case class ParamInfo(theParam: String)
 
