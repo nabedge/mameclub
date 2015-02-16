@@ -1,6 +1,5 @@
 package code.snippet
 
-import bootstrap.liftweb.ParamInfo
 import net.liftweb.http.S
 import net.liftweb.util._
 import Helpers._
