@@ -2,6 +2,9 @@
 /extsrc
 /console.devmode.log
 
+# ide
+.idea/
+
 # use glob syntax.
 syntax: glob
 *.ser
