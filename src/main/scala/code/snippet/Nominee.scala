@@ -1,6 +1,5 @@
 package code.snippet
 
-import bootstrap.liftweb.ParamInfo
 import net.liftweb.http.S
 import net.liftweb.util._
 import Helpers._
@@ -12,3 +11,5 @@ class Nominee(pi: ParamInfo) {
 
   def render = <lift:comet type="NomineeComet" name={pi.theParam}/>
 }
+
+case class ParamInfo(theParam: String)
